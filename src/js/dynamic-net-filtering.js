@@ -528,24 +528,6 @@ Matrix.prototype.removeFromRuleParts = function(parts) {
 
 /******************************************************************************/
 
-const magicId = 1;
-
-Matrix.prototype.toSelfie = function() {
-    return {
-        magicId: magicId,
-        rules: Array.from(this.rules)
-    };
-};
-
-Matrix.prototype.fromSelfie = function(selfie) {
-    if ( selfie.magicId !== magicId ) { return false; }
-    this.rules = new Map(selfie.rules);
-    this.changed = true;
-    return true;
-};
-
-/******************************************************************************/
-
 Matrix.prototype.benchmark = async function() {
     const requests = await µBlock.loadBenchmarkDataset();
     if ( Array.isArray(requests) === false || requests.length === 0 ) {
